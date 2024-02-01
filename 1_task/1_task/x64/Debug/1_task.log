@@ -1,0 +1,4 @@
+﻿  1_task.cpp
+C:\Users\Professional\Documents\git\OOP-course-politeh\1_task\1_task\1_task.cpp(26,28): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Professional\Documents\git\OOP-course-politeh\1_task\1_task\1_task.cpp(99,55): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+  1_task.vcxproj -> C:\Users\Professional\Documents\git\OOP-course-politeh\1_task\x64\Debug\1_task.exe

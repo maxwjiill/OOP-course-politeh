@@ -1,0 +1,7 @@
+﻿  Functions.cpp
+  main.cpp
+C:\Users\Professional\Documents\git\OOP-course-politeh\3_task\3_task_new\main.cpp(78,23): warning C4101: R: неиспользованная локальная переменная
+  Point.cpp
+  Triangle.cpp
+  Создание кода...
+  3_task_new.vcxproj -> C:\Users\Professional\Documents\git\OOP-course-politeh\3_task\x64\Debug\3_task_new.exe

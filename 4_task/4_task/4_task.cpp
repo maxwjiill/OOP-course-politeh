@@ -76,6 +76,8 @@ public:
         return false;
     }
 
+    //перегрузка операторов
+    
     bool operator>(const PriorityQueue& other) const {
         return size > other.size;
     }
@@ -102,11 +104,11 @@ int main()
 
     while (true) {
         cout << "\nMenu:\n";
-        cout << "1. Add element to the priority queue\n";
-        cout << "2. Extract element with maximum priority\n";
-        cout << "3. Extract all elements with a specific priority\n";
-        cout << "4. Check if an element is in the priority queue\n";
-        cout << "5. Print the priority queue\n";
+        cout << "1. Take a new file\n";
+        cout << "2. Read the file\n";
+        // cout << "3. Extract all elements with a specific priority\n";
+        // cout << "4. Check if an element is in the priority queue\n";
+        // cout << "5. Print the priority queue\n";
         cout << "6. Exit\n";
         cout << "Enter your choice: ";
 
