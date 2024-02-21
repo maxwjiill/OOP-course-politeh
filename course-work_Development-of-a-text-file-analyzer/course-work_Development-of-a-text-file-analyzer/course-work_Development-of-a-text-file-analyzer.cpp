@@ -1,5 +1,6 @@
 ﻿//C:\Users\Professional\Documents\git\OOP-course-politeh\course-work_Development-of-a-text-file-analyzer\upperRegister.txt
 
+#include "TextFileHandler.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -12,186 +13,6 @@
 using namespace std;
 
 
-class TextFileHandler {
-private:
-    string path;
-    string fileContent;
-    bool fileOpenedSuccessfully;
-    bool caseFlag;
-    char ignoreChar;
-
-public:
-    TextFileHandler(const string& path, bool caseFlag = true, char ignoreChar = '\0') : path(path), fileOpenedSuccessfully(false), caseFlag(caseFlag), ignoreChar(ignoreChar) {}
-
-    bool openFile() {
-        ifstream file(path);
-        if (file.is_open()) {
-            cout << "File opened successfully.\n";
-
-            string line;
-            while (getline(file, line)) {
-                fileContent += line + "\n";
-            }
-
-            file.close();
-            fileOpenedSuccessfully = true;
-            return true;
-        }
-        else {
-            cerr << "\n\tUnable to open file: " << path << endl;
-            fileOpenedSuccessfully = false;
-            return false;
-        }
-    }
-
-    void printErrorMessage() const {
-        cerr << "\n\tCannot get file content. Try to reaload the file\n";
-    }
-
-    void setCaseSensitive(bool value) {
-        caseFlag = value;
-    }
-
-    bool getCaseSensitive() {
-        return caseFlag;
-    }
-
-    void setIgnoreChar(char value) {
-        ignoreChar = value;
-    }
-
-    const string& getFileContent() const {
-        if (!fileOpenedSuccessfully) {
-            printErrorMessage();
-            return "";
-        }
-
-        return fileContent;
-    }
-
-    // Подсчет уникальных строк
-    int countUniqueWords() const {
-        if (!fileOpenedSuccessfully) {
-            printErrorMessage();
-            return 0;
-        }
-
-        istringstream iss(fileContent);
-        unordered_set<string> uniqueWords;
-        string word;
-
-        while (iss >> word) {
-            if (!caseFlag) {
-                transform(word.begin(), word.end(), word.begin(), ::tolower);
-            }
-
-            if (ignoreChar != '\0' && word.find(ignoreChar) != string::npos) {
-                continue;
-            }
-
-            uniqueWords.insert(word);
-        }
-
-        return static_cast<int>(uniqueWords.size());
-    }
-
-    // Подсчет предложений
-    int countSentences() const {
-        if (!fileOpenedSuccessfully) {
-            printErrorMessage();
-            return 0;
-        }
-
-        istringstream iss(fileContent);
-        int sentenceCount = 0;
-        string line;
-
-        while (getline(iss, line)) {
-            istringstream lineStream(line);
-            string word;
-
-            while (lineStream >> word) {
-                if (word.find('.') != string::npos ||
-                    word.find('!') != string::npos ||
-                    word.find('?') != string::npos) {
-                    sentenceCount++;
-                }
-            }
-        }
-
-        return sentenceCount;
-    }
-
-    // Часто встречаемые слова
-    vector<pair<string, int>> getWordFrequency() const {
-        if (!fileOpenedSuccessfully) {
-            printErrorMessage();
-            return {};
-        }
-
-        istringstream iss(fileContent);
-        unordered_map<string, int> wordFrequency;
-        string word;
-
-        while (iss >> word) {
-            if (!caseFlag) {
-                transform(word.begin(), word.end(), word.begin(), ::tolower);
-            }
-
-            if (ignoreChar != '\0' && word.find(ignoreChar) != string::npos) {
-                continue;
-            }
-
-            word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
-            wordFrequency[word]++;
-        }
-
-        vector<pair<string, int>> sortedFrequency(
-            wordFrequency.begin(), wordFrequency.end());
-
-        sort(sortedFrequency.begin(), sortedFrequency.end(),
-            [](const auto& a, const auto& b) {
-                return a.second > b.second;
-            });
-
-        return sortedFrequency;
-    }
-
-    // Слова с наибольшим числом символов
-    vector<pair<string, int>> getWordLengthRanking() const {
-        if (!fileOpenedSuccessfully) {
-            printErrorMessage();
-            return {};
-        }
-
-        istringstream iss(fileContent);
-        unordered_map<string, int> wordLength;
-        string word;
-
-        while (iss >> word) {
-            if (!caseFlag) {
-                transform(word.begin(), word.end(), word.begin(), ::tolower);
-            }
-
-            if (ignoreChar != '\0' && word.find(ignoreChar) != string::npos) {
-                continue;
-            }
-
-            word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
-            wordLength[word] = word.length();
-        }
-
-        vector<pair<string, int>> sortedLength(
-            wordLength.begin(), wordLength.end());
-
-        sort(sortedLength.begin(), sortedLength.end(),
-            [](const auto& a, const auto& b) {
-                return a.second > b.second;
-            });
-
-        return sortedLength;
-    }
-};
 
 bool getCaseFlagFromUser() {
     bool caseFlag;
@@ -270,7 +91,7 @@ int main() {
             fileHandler.setCaseSensitive(caseFlag);
 
             char ignoreChar = getIgnoreChar(fileHandler.getCaseSensitive());
-            if (ignoreChar != '\n') {fileHandler.setIgnoreChar(ignoreChar);}
+            if (ignoreChar != '\n') { fileHandler.setIgnoreChar(ignoreChar); }
 
             int uniqueWordsCount = fileHandler.countUniqueWords();
             if (uniqueWordsCount != 0) {

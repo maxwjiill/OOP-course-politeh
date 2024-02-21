@@ -128,6 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="course-work_Development-of-a-text-file-analyzer.cpp" />
+    <ClCompile Include="TextFileHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TextFileHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

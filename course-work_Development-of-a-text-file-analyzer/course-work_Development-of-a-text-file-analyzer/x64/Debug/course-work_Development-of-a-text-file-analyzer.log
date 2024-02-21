@@ -1,4 +1,2 @@
 ﻿  course-work_Development-of-a-text-file-analyzer.cpp
-C:\Users\Professional\Documents\git\OOP-course-politeh\course-work_Development-of-a-text-file-analyzer\course-work_Development-of-a-text-file-analyzer\course-work_Development-of-a-text-file-analyzer.cpp(181,43): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Professional\Documents\git\OOP-course-politeh\course-work_Development-of-a-text-file-analyzer\course-work_Development-of-a-text-file-analyzer\course-work_Development-of-a-text-file-analyzer.cpp(66): warning C4172: возвращение адреса локальной или временной переменной
   course-work_Development-of-a-text-file-analyzer.vcxproj -> C:\Users\Professional\Documents\git\OOP-course-politeh\course-work_Development-of-a-text-file-analyzer\x64\Debug\course-work_Development-of-a-text-file-analyzer.exe
