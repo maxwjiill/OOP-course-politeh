@@ -2,6 +2,7 @@
 //g++ -std=c++14 course-work_Development-of-a-text-file-analyzer.cpp TextFileHandler.cpp -o course-work_Development-of-a-text-file-analyzer
 
 #include "TextFileHandler.h"
+#include "InputUtils.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -12,42 +13,6 @@
 #include <algorithm>
 
 using namespace std;
-
-
-
-bool getCaseFlagFromUser() {
-    bool caseFlag;
-    cout << "Do you want to take the case of the text into account when analyzing? (1 - yes, 0 - no): ";
-    cin >> caseFlag;
-    return caseFlag;
-}
-
-char getIgnoreChar(bool value) {
-    bool caseIgnoreChar;
-    cout << "Do you want to exclude words with a certain character from processing? (1 - yes, 0 - no): ";
-    cin >> caseIgnoreChar;
-
-    if (caseIgnoreChar) {
-        char ignoreChar;
-        cout << "Type any specific character: ";
-        cin >> ignoreChar;
-        if (value) {
-            return ignoreChar;
-        }
-        else {
-            return tolower(ignoreChar);
-        }
-        
-    }
-    return '\n';
-}
-
-bool getSaveOption() {
-    bool saveOption;
-    cout << "\nDo you want to save the word frequency list? (1 - Yes, 0 - No): ";
-    cin >> saveOption;
-    return saveOption;
-}
 
 int main() {
     string filePath;
@@ -88,10 +53,12 @@ int main() {
             break;
         }
         case 3: {
-            bool caseFlag = getCaseFlagFromUser();
+            bool caseFlag = InputUtils::getCaseFlagFromUser();
             fileHandler.setCaseSensitive(caseFlag);
 
-            char ignoreChar = getIgnoreChar(fileHandler.getCaseSensitive());
+            cout << caseFlag << endl;
+
+            char ignoreChar = InputUtils::getIgnoreChar(fileHandler.getCaseSensitive());
             if (ignoreChar != '\n') { fileHandler.setIgnoreChar(ignoreChar); }
 
             int uniqueWordsCount = fileHandler.countUniqueWords();
@@ -113,10 +80,10 @@ int main() {
         case 5: {
             count = 0;
 
-            bool caseFlag = getCaseFlagFromUser();
+            bool caseFlag = InputUtils::getCaseFlagFromUser();
             fileHandler.setCaseSensitive(caseFlag);
 
-            char ignoreChar = getIgnoreChar(fileHandler.getCaseSensitive());
+            char ignoreChar = InputUtils::getIgnoreChar(fileHandler.getCaseSensitive());
             if (ignoreChar != '\n') { fileHandler.setIgnoreChar(ignoreChar); }
 
             auto wordFrequency = fileHandler.getWordFrequency();
@@ -137,7 +104,7 @@ int main() {
                     }
                 }
 
-                bool saveOption = getSaveOption();
+                bool saveOption = InputUtils::getSaveOption();
                 if (saveOption) {
                     count = 0;
                     string outputPath;
@@ -168,10 +135,10 @@ int main() {
         case 6: {
             count = 0;
 
-            bool caseFlag = getCaseFlagFromUser();
+            bool caseFlag = InputUtils::getCaseFlagFromUser();
             fileHandler.setCaseSensitive(caseFlag);
 
-            char ignoreChar = getIgnoreChar(fileHandler.getCaseSensitive());
+            char ignoreChar = InputUtils::getIgnoreChar(fileHandler.getCaseSensitive());
             if (ignoreChar != '\n') { fileHandler.setIgnoreChar(ignoreChar); }
 
             auto wordLengthRanking = fileHandler.getWordLengthRanking();
@@ -193,7 +160,7 @@ int main() {
                     }
                 }
 
-                bool saveOption = getSaveOption();
+                bool saveOption = InputUtils::getSaveOption();
                 if (saveOption) {
                     count = 0;
                     string outputPath;
