@@ -72,7 +72,8 @@ int TextFileHandler::countUniqueWords() const {
         if (ignoreChar != '\0' && word.find(ignoreChar) != std::string::npos) {
             continue;
         }
-
+        
+        word.erase(std::remove_if(word.begin(), word.end(), ispunct), word.end());
         uniqueWords.insert(word);
     }
 

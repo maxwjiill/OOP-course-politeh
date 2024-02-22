@@ -1,5 +1,5 @@
 ﻿//C:\Users\Professional\Documents\git\OOP-course-politeh\course-work_Development-of-a-text-file-analyzer\upperRegister.txt
-//g++ -std=c++14 course-work_Development-of-a-text-file-analyzer.cpp TextFileHandler.cpp -o course-work_Development-of-a-text-file-analyzer
+//++ -std=c++14 course-work_Development-of-a-text-file-analyzer.cpp TextFileHandler.cpp InputUtils.cpp -o course-work_Development-of-a-text-file-analyzer
 
 #include "TextFileHandler.h"
 #include "InputUtils.h"
@@ -56,7 +56,7 @@ int main() {
             bool caseFlag = InputUtils::getCaseFlagFromUser();
             fileHandler.setCaseSensitive(caseFlag);
 
-            cout << caseFlag << endl;
+            // cout << caseFlag << endl;
 
             char ignoreChar = InputUtils::getIgnoreChar(fileHandler.getCaseSensitive());
             if (ignoreChar != '\n') { fileHandler.setIgnoreChar(ignoreChar); }
